@@ -32,5 +32,5 @@ cargo build --release
 
 ```sh
 # Build, show size, and run
-cargo build --release && ls -lah target/release/smallrs && ./target/release/smallrs
+cargo build --release && ls -lah target/release/tiny-rust-hello && ./target/release/tiny-rust-hello
 ```

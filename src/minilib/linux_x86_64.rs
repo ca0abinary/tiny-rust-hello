@@ -2,11 +2,10 @@ use core::arch::asm;
 
 pub fn exit(exit_code:i32) -> ! {
     unsafe {
-        asm!(
-            "mov eax, 60",
-            "syscall",
-            in("edi") exit_code,
-            options(nostack, noreturn)
+        asm!("syscall",
+             in("eax") 60,
+             in("edi") exit_code,
+             options(nostack, noreturn)
         )
     }
 }
