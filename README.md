@@ -4,7 +4,7 @@
 
 This project is a proof of concept to myself that Rust can make very small executables with very readable code. Ideally, there will be no major differences in the `main.rs` file or command line to build regardless of target architecture.
 
-- [x] minilib amd64 (512 bytes)
+- [x] minilib amd64 (768 bytes)
 - [ ] minilib arm64
 - [ ] minilib aarch64
 - [ ] minilib riscv
@@ -32,5 +32,5 @@ cargo build --release
 
 ```sh
 # Build, show size, and run
-cargo build --release && ls -lah target/release/tiny-rust-hello && ./target/release/tiny-rust-hello
+cargo build --release && ls -lah target/release/tiny-rust-hello && ./target/release/tiny-rust-hello mojo jojo ; echo $?
 ```

@@ -1,23 +1,25 @@
 use core::arch::asm;
 
-pub fn exit(exit_code:i32) -> ! {
-    unsafe {
-        asm!("syscall",
-             in("eax") 60,
-             in("edi") exit_code,
-             options(nostack, noreturn)
-        )
-    }
+pub unsafe fn exit(exit_code:usize) -> ! {
+    asm!("syscall",
+            in("rax") 60,
+            in("rdi") exit_code,
+            options(nostack, noreturn)
+    )
 }
 
-pub fn print(string:&'static str) {
-    unsafe {
-        asm!("syscall",
-             in("rax") 1,
-             in("rdi") 1,
-             in("rsi") string.as_ptr(),
-             in("rdx") string.len(),
-             options(nostack)
-        )
-    }
+pub unsafe fn print(string:&'static str) {
+    write(string.as_ptr(), string.len())
+}
+
+pub unsafe fn write(buffer: *const u8, count: usize) {
+    asm!("syscall",
+            inout("rax") 1 => _,
+            in("rdi") 1,
+            in("rsi") buffer,
+            in("rdx") count,
+            lateout("rcx") _,
+            lateout("r11") _,
+            options(nostack)
+    )
 }
