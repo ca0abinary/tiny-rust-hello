@@ -34,3 +34,9 @@ cargo build --release
 # Build, show size, and run
 cargo build --release && ls -lah target/release/tiny-rust-hello && ./target/release/tiny-rust-hello mojo jojo ; echo $?
 ```
+
+## Related projects
+
+- [min-sized-rust](https://github.com/johnthagen/min-sized-rust)
+- [Making your own executable packer](https://fasterthanli.me/series/making-our-own-executable-packer/)
+  - Excellent write up by Amos Wenger (fasterthanlime), [part 12](https://fasterthanli.me/series/making-our-own-executable-packer/part-12) was especially helpful to me
