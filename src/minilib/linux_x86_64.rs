@@ -12,13 +12,12 @@ pub fn exit(exit_code:i32) -> ! {
 
 pub fn print(string:&'static str) {
     unsafe {
-        asm!(
-            "mov rax, 1",
-            "mov rdi, 1",
-            "syscall",
-            in("rsi") string.as_ptr(),
-            in("rdx") string.len(),
-            options(nostack)
+        asm!("syscall",
+             in("rax") 1,
+             in("rdi") 1,
+             in("rsi") string.as_ptr(),
+             in("rdx") string.len(),
+             options(nostack)
         )
     }
 }
