@@ -1,6 +1,13 @@
 use core::arch::asm;
 
-pub unsafe fn exit(exit_code:usize) -> ! {
+#[no_mangle]
+#[naked]
+unsafe extern "C" fn _start() {
+    // Move the stack pointer before it gets clobbered
+    asm!("mov rdi, rsp", "call get_args", options(noreturn))
+}
+
+pub unsafe fn sys_exit(exit_code: usize) -> ! {
     asm!("syscall",
             in("rax") 60,
             in("rdi") exit_code,
@@ -8,11 +15,7 @@ pub unsafe fn exit(exit_code:usize) -> ! {
     )
 }
 
-pub unsafe fn print(string:&'static str) {
-    write(string.as_ptr(), string.len())
-}
-
-pub unsafe fn write(buffer: *const u8, count: usize) {
+pub unsafe fn sys_write(buffer: *const u8, count: usize) {
     asm!("syscall",
             inout("rax") 1 => _,
             in("rdi") 1,

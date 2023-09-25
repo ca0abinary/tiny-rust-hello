@@ -32,7 +32,7 @@ cargo build --release
 
 ```sh
 # Build, show size, and run
-cargo build --release && ls -lah target/release/tiny-rust-hello && ./target/release/tiny-rust-hello mojo jojo ; echo $?
+cargo build --release && ls -lah target/x86_64-unknown-linux-gnu/release/tiny-rust-hello && ./target/x86_64-unknown-linux-gnu/release/tiny-rust-hello mojo jojo ; echo $?
 ```
 
 ## Related projects
