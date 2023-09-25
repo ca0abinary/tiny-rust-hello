@@ -10,13 +10,12 @@ use minilib::*;
 pub unsafe fn main(args: &[*const u8]) -> ! {
     print_str(b"Hello");
 
-    if args.len() > 1 {
-        for i in 1..args.len() {
+    match args.len() {
+        0 | 1 => print_str(b" World"),
+        _ => {
             print_str(b" ");
-            sys_write(args[i], strlen(args[i]));
+            sys_write(args[1], strlen(args[1]));
         }
-    } else {
-        print_str(b" World");
     }
 
     print_str(b"!\n");

@@ -32,7 +32,12 @@ cargo build --release
 
 ```sh
 # Build, show size, and run
-cargo build --release && ls -lah target/x86_64-unknown-linux-gnu/release/tiny-rust-hello && ./target/x86_64-unknown-linux-gnu/release/tiny-rust-hello mojo jojo ; echo $?
+cargo build --release && ls -lah target/x86_64-unknown-linux-gnu/release/tiny-rust-hello && ./target/x86_64-unknown-linux-gnu/release/tiny-rust-hello 'mojo jojo'
+```
+
+```sh
+# (aarch64) Build, show size, and run
+cargo build --target aarch64-unknown-linux-gnu --release && ls -lah target/aarch64-unknown-linux-gnu/release/tiny-rust-hello && qemu-aarch64-static target/aarch64-unknown-linux-gnu/release/tiny-rust-hello 'mojo jojo'
 ```
 
 ## Related projects

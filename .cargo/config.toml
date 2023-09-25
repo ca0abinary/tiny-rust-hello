@@ -8,3 +8,11 @@ rustflags = [
     "-Clink-args=-Wl,-n,-N,--no-dynamic-linker,--build-id=none",
     "-Crelocation-model=static"
 ]
+
+[target.aarch64-unknown-linux-gnu]
+linker = "aarch64-linux-gnu-gcc"
+rustflags = [
+    "-Clink-args=-nostartfiles",
+    "-Clink-args=-Wl,-n,-N,--no-dynamic-linker,--build-id=none",
+    "-Crelocation-model=static"
+]
